@@ -42,4 +42,10 @@ public class PersonRestController {
         var person = personService.update(id, request);
         return person != null? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping(path = "/api/v1/persons/{id}")
+    public ResponseEntity<Void> deletePerson(@PathVariable Long id) {
+        boolean successful = personService.deleteById(id);
+        return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
 }
